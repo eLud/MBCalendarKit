@@ -183,7 +183,7 @@
     
     //// Color Declarations
     
-    UIColor* color2 = self.circlesColor;
+    UIColor* color2 = [UIColor colorWithRed:0.20 green:0.8 blue:0.8 alpha:1.0];
     
     //// Frames
     CGRect frame = CGRectMake(0, 0, 46, 44);
@@ -213,7 +213,7 @@
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(46, 44), NO, 2);
     
     //// Color Declarations
-    UIColor* color2 = self.circlesColor;
+    UIColor* color2 = [UIColor colorWithRed:0.20 green:0.8 blue:0.8 alpha:1.0];
     
     //// Frames
     CGRect frame = CGRectMake(0, 0, 46, 44);
