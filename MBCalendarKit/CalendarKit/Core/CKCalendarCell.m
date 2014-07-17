@@ -18,6 +18,8 @@
 @property (nonatomic, strong) UILabel *label;
 
 @property (nonatomic, strong) UIView *dot;
+@property (strong,nonatomic) UIImage *circleImage;
+@property (strong,nonatomic) UIImage *fullCircleImage;
 
 @end
 
@@ -60,6 +62,9 @@
         _dot = [UIView new];
         [_dot setHidden:YES];
         _showDot = NO;
+        
+        //CircleView
+        _circleView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 44)];
     }
     return self;
 }
@@ -90,6 +95,7 @@
     [self configureLabel];
     [self configureDot];
     
+    [self addSubview:self.circleView];
     [self addSubview:[self label]];
     [self addSubview:[self dot]];
 }
@@ -140,7 +146,7 @@
 {
     UILabel *label = [self label];
     
-    [label setFont:[UIFont boldSystemFontOfSize:13]];
+    [label setFont:[UIFont systemFontOfSize:15]];
     [label setTextAlignment:NSTextAlignmentCenter];
     
     [label setBackgroundColor:[UIColor clearColor]];
@@ -164,6 +170,69 @@
     
 }
 
+#pragma mark - Circle
+
+-(UIImage *)circleImage{
+    
+    if (_circleImage) {
+        return _circleImage;
+    }
+    
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(46, 44), NO, 2);
+    
+    //// Color Declarations
+    
+    UIColor* color2 = self.circlesColor;
+    
+    //// Frames
+    CGRect frame = CGRectMake(0, 0, 46, 44);
+    
+    
+    //// Oval Drawing
+    UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 33) * 0.50000) + 0.5, CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 33) * 0.40) + 0.5, 33, 33)];
+    
+    [color2 setStroke];
+    ovalPath.lineWidth = 1;
+    [ovalPath stroke];
+    
+    _circleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return _circleImage;
+    
+}
+
+-(UIImage *)fullCircleImage{
+    
+    if (_fullCircleImage) {
+        return _fullCircleImage;
+    }
+    
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(46, 44), NO, 2);
+    
+    //// Color Declarations
+    UIColor* color2 = self.circlesColor;
+    
+    //// Frames
+    CGRect frame = CGRectMake(0, 0, 46, 44);
+    
+    
+    //// Oval Drawing
+    UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + floor((CGRectGetWidth(frame) - 33) * 0.50000) + 0.5, CGRectGetMinY(frame) + floor((CGRectGetHeight(frame) - 33) * 0.40) + 0.5, 33, 33)];
+    
+    [color2 setFill];
+    [ovalPath fill];
+    
+    _fullCircleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return _fullCircleImage;
+    
+}
+
+
 #pragma mark - UI Coloring
 
 - (void)applyColors
@@ -184,29 +253,39 @@
     [self setBorderWidth:0.5];
     [self setBackgroundColor:[self normalBackgroundColor]];
     
+    
+    [self.circleView setImage:nil];
+
+    
     //  Today cell
     if(state == CKCalendarMonthCellStateTodaySelected)
     {
-        [self setBackgroundColor:[self todaySelectedBackgroundColor]];
+//        [self setBackgroundColor:[self todaySelectedBackgroundColor]];
         [[self label] setShadowColor:[self todayTextShadowColor]];
         [[self label] setTextColor:[self todayTextColor]];
         [self setBorderColor:[self backgroundColor]];
+        
+        [self.circleView setImage:self.fullCircleImage];
     }
     
     //  Today cell, selected
     else if(state == CKCalendarMonthCellStateTodayDeselected)
     {
-        [self setBackgroundColor:[self todayBackgroundColor]];
-        [[self label] setShadowColor:[self todayTextShadowColor]];
-        [[self label] setTextColor:[self todayTextColor]];
+//        [self setBackgroundColor:[self todayBackgroundColor]];
+//        [[self label] setShadowColor:[self todayTextShadowColor]];
+        [[self label] setTextColor:[self textColor]];
         [self setBorderColor:[self backgroundColor]];
         [self showBorder];
+        
+        [self.circleView setImage:self.circleImage];
+
     }
     
     //  Selected cells in the active month have a special background color
     else if(state == CKCalendarMonthCellStateSelected)
     {
-        [self setBackgroundColor:[self selectedBackgroundColor]];
+//        [self setBackgroundColor:[self selectedBackgroundColor]];
+        [self.circleView setImage:self.fullCircleImage];
         [self setBorderColor:[self selectedCellBorderColor]];
         [[self label] setTextColor:[self textSelectedColor]];
         [[self label] setShadowColor:[self textSelectedShadowColor]];

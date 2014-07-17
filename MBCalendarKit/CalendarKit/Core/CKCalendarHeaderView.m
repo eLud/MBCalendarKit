@@ -45,7 +45,7 @@
         [_monthTitle setShadowOffset:CGSizeMake(0, 1)];
         [_monthTitle setBackgroundColor:[UIColor clearColor]];
         [_monthTitle setTextAlignment:NSTextAlignmentCenter];
-        [_monthTitle setFont:[UIFont boldSystemFontOfSize:22]];
+        [_monthTitle setFont:[UIFont systemFontOfSize:22]];
         
         _columnTitles = [NSMutableArray new];
         _columnLabels = [NSMutableArray new];
@@ -186,7 +186,7 @@
     [l setTextColor:kCalendarColorHeaderWeekdayTitle];
     [l setShadowColor:kCalendarColorHeaderWeekdayShadow];
     [l setTextAlignment:NSTextAlignmentCenter];
-    [l setFont:[UIFont boldSystemFontOfSize:10]];
+    [l setFont:[UIFont systemFontOfSize:10]];
     [l setShadowOffset:CGSizeMake(0, 1)];
     [l setText:title];
     

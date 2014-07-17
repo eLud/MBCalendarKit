@@ -15,6 +15,8 @@
 @property (nonatomic, assign) CKCalendarMonthCellState state;
 @property (nonatomic, strong) NSNumber *number;
 @property (nonatomic, assign) BOOL showDot;
+@property (nonatomic, strong) UIImageView *circleView;
+@property (nonatomic, strong) UIColor *circlesColor;
 
 @property (nonatomic, assign) NSUInteger index;
 
