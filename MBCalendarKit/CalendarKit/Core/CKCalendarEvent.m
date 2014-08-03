@@ -31,4 +31,24 @@
     return e;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        self.date = [coder decodeObjectForKey:@"date"];
+        self.title = [coder decodeObjectForKey:@"title"];
+        self.info = [coder decodeObjectForKey:@"info"];
+        self.color = [coder decodeObjectForKey:@"color"];
+    }
+    return self;
+}
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.date forKey:@"date"];
+    [aCoder encodeObject:self.title forKey:@"title"];
+    [aCoder encodeObject:self.info forKey:@"info"];
+    [aCoder encodeObject:self.color forKey:@"color"];
+    
+}
+
 @end

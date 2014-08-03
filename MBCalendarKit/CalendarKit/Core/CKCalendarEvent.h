@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CKCalendarEvent : NSObject
+@interface CKCalendarEvent : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *title;

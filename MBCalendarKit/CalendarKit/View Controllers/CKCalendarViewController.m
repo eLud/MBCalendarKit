@@ -18,6 +18,14 @@
 
 @implementation CKCalendarViewController
 
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self){
+        
+    }
+}
+
 - (id)init
 {
     CKCalendarViewControllerInternal *calendarViewController = [CKCalendarViewControllerInternal new];
@@ -30,6 +38,7 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
