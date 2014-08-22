@@ -31,6 +31,19 @@
     return e;
 }
 
++(CKCalendarEvent *)eventWithTitle:(NSString *)title andDate:(NSDate *)date andInfo:(NSDictionary *)info color:(UIColor *)color andDuration:(int)duration{
+    
+    CKCalendarEvent *e = [CKCalendarEvent new];
+    [e setTitle:title];
+    [e setDate:date];
+    [e setInfo:info];
+    [e setColor:color];
+    [e setDuration:duration];
+    
+    return e;
+}
+
+
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super init];

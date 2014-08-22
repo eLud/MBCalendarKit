@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic) int duration;
 @property (nonatomic, strong) NSDictionary *info;
 @property (nonatomic, strong) UIColor *color;
 

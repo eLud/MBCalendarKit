@@ -12,9 +12,12 @@
 #import "CKCalendarHeaderView.h"
 #import "CKCalendarCell.h"
 #import "CKTableViewCell.h"
+#import "EASCalendarTableViewCell.h"
 
 #import "NSCalendarCategories.h"
 #import "NSDate+Description.h"
+#import "NSDate+Components.h"
+
 #import "UIView+AnimatedFrame.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -81,6 +84,10 @@
     //  Date bounds
     _minimumDate = nil;
     _maximumDate = nil;
+    
+    //Date formater
+    self.formatter = [[NSDateFormatter alloc]init];
+    [self.formatter setDateFormat:@"HH:mm"];
 
 }
 - (instancetype)init
@@ -992,21 +999,27 @@
         return cell;
     }
 
-    CKTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    EASCalendarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     CKCalendarEvent *event = [[self events] objectAtIndex:[indexPath row]];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
-    [[cell textLabel] setText:[event title]];
+    [[cell nameLabel] setText:[event title]];
     
-    UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(3, 6, 20, 20)];
-    CALayer *layer = [CALayer layer];
-    layer.backgroundColor = [[event color] CGColor];
-    layer.frame = colorView.frame;
-    [colorView.layer insertSublayer:layer atIndex:0];
+    [[cell colorIndicator]setBackgroundColor:[event color]];
     
-    [cell addSubview:colorView];
+    cell.startTimeLabel.text = [self.formatter stringFromDate:event.date];
+    NSDate *endDate = [event.date dateByAddingTimeInterval:event.duration*60];
+    cell.endTimeLabel.text = [self.formatter stringFromDate:endDate];
+    
+//    UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(3, 6, 20, 20)];
+//    CALayer *layer = [CALayer layer];
+//    layer.backgroundColor = [[event color] CGColor];
+//    layer.frame = colorView.frame;
+//    [colorView.layer insertSublayer:layer atIndex:0];
+//    
+//    [cell addSubview:colorView];
     
     return cell;
 }
