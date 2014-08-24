@@ -70,7 +70,7 @@
     [_table setDelegate:self];
     [_table setDataSource:self];
     
-    [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [_table registerClass:[EASCalendarTableViewCell class] forCellReuseIdentifier:@"cell"];
     [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
     
     //  Events for selected date
