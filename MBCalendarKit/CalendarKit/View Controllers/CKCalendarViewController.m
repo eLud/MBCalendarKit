@@ -24,6 +24,8 @@
     if (self){
         
     }
+    
+    return self;
 }
 
 - (id)init
