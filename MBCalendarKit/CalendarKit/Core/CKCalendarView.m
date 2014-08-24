@@ -70,7 +70,8 @@
     [_table setDelegate:self];
     [_table setDataSource:self];
     
-    [_table registerClass:[EASCalendarTableViewCell class] forCellReuseIdentifier:@"cell"];
+    UINib *cellNib = [UINib nibWithNibName:@"EASCalendarTableViewCell" bundle:nil];
+    [_table registerNib:cellNib forCellReuseIdentifier:@"cell"];
     [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
     
     //  Events for selected date
@@ -1005,7 +1006,7 @@
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
-    [[cell nameLabel] setText:[event title]];
+    [[cell nameLabel] setAttributedText:[event title]];
     
     [[cell colorIndicator]setBackgroundColor:[event color]];
     
