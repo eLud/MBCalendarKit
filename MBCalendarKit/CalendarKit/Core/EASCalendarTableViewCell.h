@@ -10,10 +10,10 @@
 
 @interface EASCalendarTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *colorIndicator;
-@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UIView *colorIndicator;
+@property (strong, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *endTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 
 @end

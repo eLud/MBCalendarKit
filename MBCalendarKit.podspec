@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "MBCalendarKit"
-  s.version      = "2.1.0"
+  s.version      = "2.1.1"
   s.summary      = "An open source calendar view for iOS."
   s.description  = <<-DESC
 	MBCalendarKit is a calendar control written in UIKit. I've found existing implementations to be inadequate and difficult to work with, so I rolled my own.
